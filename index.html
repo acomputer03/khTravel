@@ -42,6 +42,11 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, .36);
 
     }
+    @include media-breakpoint-up(sm) {
+      .text-size {
+        font-size: 5rem;
+      }
+}
     
   </style>
 
@@ -56,8 +61,8 @@
     <div class="container-fluid p-5 bg-main">
       <div class="row justify-content-center">
         <div class="col-12 col-sm-8 text-center text-shadow">
-          <h1 class="text-light my-5 display-3">高雄夯旅遊</h1>
-          <p class="text-light display-5 m-0">豐富的高雄旅遊特輯，匯集主題式遊覽攻略、蒐羅在地必嚐美食，無論你是初訪高雄，或想來趟深度之旅，都能在這裡找到適合旅遊方式</p>
+          <h1 class="text-light m-5 text-size">高雄夯旅遊</h1>
+          <p class="text-light display-5  m-5">豐富的高雄旅遊特輯，匯集主題式遊覽攻略、蒐羅在地必嚐美食，無論你是初訪高雄，或想來趟深度之旅，都能在這裡找到適合旅遊方式</p>
 
           <form>
 
@@ -79,9 +84,9 @@
 
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-10 col-md-8 pt-2 bg-light card-hotArea text-center">
+        <div class="col-10 col-md-8 pt-2 bg-light card-hotArea text-center d-none d-sm-block">
           <p class="text-black-50 my-2 h2">∞ 高雄夯景點 ∞</p>
-          <div class="hotBtn d-none d-sm-block">
+          <div class="hotBtn ">
             <button type="button" value="旗山區" class="mx-2 mb-3 btn btn-info rounded-pill" @click="area=''"> 全區 </button>
             <button type="button" value="旗山區" class="mx-2 mb-3 btn btn-info rounded-pill" @click="area='旗山區'"> 旗山區
             </button>
@@ -92,7 +97,7 @@
             <button type="button" value="鼓山區" class="mx-2 mb-3 btn btn-info rounded-pill" @click="area='鼓山區'"> 鼓山區
             </button>
           </div>
-          <div class="hotBtn d-block d-sm-none px-4">
+          <!-- <div class="hotBtn d-block d-sm-none px-4">
             <button type="button" value="旗山區" class="mb-3 btn btn-block btn-info rounded-pill" @click="area=''"> 全區 </button>
             <button type="button" value="旗山區" class="mb-3 btn btn-block btn-info rounded-pill" @click="area='旗山區'"> 旗山區
             </button>
@@ -102,7 +107,7 @@
             </button>
             <button type="button" value="鼓山區" class="mb-3 btn btn-block btn-info rounded-pill" @click="area='鼓山區'"> 鼓山區
             </button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
