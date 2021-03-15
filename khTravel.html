@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+  <style>
+    .bg-main {
+      background-image: url('https://khh.travel/image/19684/original');
+      width: auto;
+      height: 450px;
+      background-size: cover;
+      background-position: 0px center;
+    }
+
+    .mt-auto-device {
+      margin-top: auto;
+    }
+
+    .card-hotArea {
+      position: relative;
+      top: -3rem;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, .5);
+      border-radius: 3rem;
+    }
+
+    .box-shadow {
+      box-shadow: 0 3px 5px rgba(0, 0, 0, .16);
+      transition: box-shadow .3;
+    }
+
+    .box-shadow:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .36);
+
+    }
+  </style>
+
+  <title>Hello, world!</title>
+
+
+
+</head>
+
+<body>
+  <section id="app">
+    <div class="container-fluid p-5 bg-main">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-8 text-center text-shadow">
+          <h1 class="text-light my-5 display-1">高雄夯旅遊</h1>
+          <p class="text-light display-5 m-0">豐富的高雄旅遊特輯，匯集主題式遊覽攻略、蒐羅在地必嚐美食，無論你是初訪高雄，或想來趟深度之旅，都能在這裡找到適合旅遊方式</p>
+
+          <form>
+
+            <div class="form-group col mt-5">
+              <select id="inputState" class="form-control" v-model="area">
+                <option disabled value="" selected>請選擇地區</option>
+                <option v-for="item in ZoneData" :value="item.Zone">{{item.Zone}}</option>
+              </select>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-8 pt-2 bg-light card-hotArea text-center">
+          <p class="text-black-50 my-2 h2">∞ 高雄夯景點 ∞</p>
+          <div class="hotBtn d-none d-sm-block">
+            <button type="button" value="旗山區" class="mx-2 mb-3 btn btn-info rounded-pill" @click="area=''"> 全區 </button>
+            <button type="button" value="旗山區" class="mx-2 mb-3 btn btn-info rounded-pill" @click="area='旗山區'"> 旗山區
+            </button>
+            <button type="button" value="三民區" class="mx-2 mb-3 btn btn-info rounded-pill" @click="area='三民區'"> 三民區
+            </button>
+            <button type="button" value="鳳山區" class="mx-2 mb-3 btn btn-info rounded-pill" @click="area='鳳山區'"> 鳳山區
+            </button>
+            <button type="button" value="鼓山區" class="mx-2 mb-3 btn btn-info rounded-pill" @click="area='鼓山區'"> 鼓山區
+            </button>
+          </div>
+          <div class="hotBtn d-block d-sm-none px-4">
+            <button type="button" value="旗山區" class="mb-3 btn btn-block btn-info rounded-pill" @click="area='旗山區'"> 旗山區
+            </button>
+            <button type="button" value="三民區" class="mb-3 btn btn-block btn-info rounded-pill" @click="area='三民區'"> 三民區
+            </button>
+            <button type="button" value="鳳山區" class="mb-3 btn btn-block btn-info rounded-pill" @click="area='鳳山區'"> 鳳山區
+            </button>
+            <button type="button" value="鼓山區" class="mb-3 btn btn-block btn-info rounded-pill" @click="area='鼓山區'"> 鼓山區
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+
+
+    <div class="container">
+      <div class="row ">
+        <h3 class="areaTitle col text-info text-center mb-4 " v-if="area=='' ">全部景點</h3>
+        <h3 class="areaTitle col text-info text-center mb-4 " v-else="area!=='' ">{{area}}景點</h3>
+      </div>
+      <!-- <div class="row " v-if="!area=">
+        <h3 class="areaTitle col text-info text-center mb-4 ">{{area}}景點</h3>
+      </div> -->
+
+
+      <div class="row mt-4">
+        <div class="col-md-4 mb-4" v-for="item in FilteredTravel" :key="item.id">
+          <div class="card border-0 h-100 box-shadow">
+            <div style="height: 250px; background-size: cover; background-position: center"
+              :style="{backgroundImage: `url(${item.Picture1})`}">
+            </div>
+            <div class="card-body">
+              <span class="badge badge-secondary float-right ml-2">{{item.Zone}}</span>
+              <h5 class="card-title">
+                <a href="#" class="text-dark">{{item.Name}}</a>
+                <!--標題 -->
+                <div class="bagde-free text-info mt-2 mr-2" v-if="!item.Ticketinfo"><i class="fas fa-tags"></i>FREE</div>
+              </h5>
+              <p class="m-0 pb-2"><i class="fas fa-clock mr-1"></i>{{item.Opentime}}</p>
+              <p class="m-0 pb-2"><i class="fas fa-map-marker-alt mr-1"></i>{{item.Add}}</p>
+              <p class="m-0 pb-2"><i class="fas fa-mobile-alt mr-1"></i>{{item.Tel}}</p>
+
+
+            </div>
+            <div class="card-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-outline-secondary btn-sm" @click="getAttraction(item)">
+                查看更多
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{ temAttraction.Name }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body ">
+            <img :src="temAttraction.Picture1" class="img-fluid mx-auto d-block" alt="">
+            <blockquote class="blockquote mt-3">
+              <small class="mb-3 "> 簡介：{{ temAttraction.Toldescribe }}</small>
+              <p class=" small mt-3"><i class="fas fa-clock mr-1 text-warning"></i>{{temAttraction.Opentime}}</p>
+              <div class="small text-info mr-2 mt-3" v-if="!temAttraction.Ticketinfo"><i class="fas fa-tags"></i>FREE</div>
+              <div class="small text-info mr-2 mt-3" v-if="temAttraction.Ticketinfo"><i class="fas fa-tags"></i>{{temAttraction.Ticketinfo}}</div>
+              <p class=" small text-primary mt-3"><i class="fas fa-map-marker-alt mr-1"></i><a :href="temherf" target="_blank">  {{temAttraction.Add}} </a></p>
+              <p class=" small"><i class="fas fa-mobile-alt mr-1"></i>{{temAttraction.Tel}}</p>              
+              <footer class="blockquote-footer text-right">{{ temAttraction.Name}}</footer>
+            </blockquote>
+           
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </section>
+  <div class="footer bg-dark">
+    <div class="wrap text-white py-5">
+      <p class="text-center font-family title-color">高雄旅遊網</p>
+      <p class="text-center font-family orange-color">資料來源:高雄市政府</p>
+      
+    </div>
+  </div>
+  <script src="khTravel.js"></script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
