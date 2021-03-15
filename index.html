@@ -175,11 +175,11 @@
             <img :src="temAttraction.Picture1" class="img-fluid mx-auto d-block" alt="">
             <blockquote class="blockquote mt-3">
               <small class="mb-3 "> 簡介：{{ temAttraction.Toldescribe }}</small>
-              <p class=" small mt-3"><i class="fas fa-clock mr-1 text-warning"></i>{{temAttraction.Opentime}}</p>
-              <div class="small text-info mr-2 mt-3" v-if="!temAttraction.Ticketinfo"><i class="fas fa-tags"></i>FREE</div>
-              <div class="small text-info mr-2 mt-3" v-if="temAttraction.Ticketinfo"><i class="fas fa-tags"></i>{{temAttraction.Ticketinfo}}</div>
-              <p class=" small text-primary mt-3"><i class="fas fa-map-marker-alt mr-1"></i><a :href="temherf" target="_blank">  {{temAttraction.Add}} </a></p>
-              <p class=" small"><i class="fas fa-mobile-alt mr-1"></i>{{temAttraction.Tel}}</p>              
+              <p class=" small mt-3"><i class="fas fa-clock mr-1 text-warning mr-3 "></i>{{temAttraction.Opentime}}</p>
+              <div class="small text-info  mt-3" v-if="!temAttraction.Ticketinfo"><i class="fas fa-dollar-sign fa-lg text-warning mr-3"></i>FREE</div>
+              <div class="small text-info  mt-3" v-if="temAttraction.Ticketinfo"><i class="fas fa-dollar-sign  fa-lg text-warning  mr-3"></i>{{temAttraction.Ticketinfo}}</div>
+              <p class=" small text-primary mt-3"><i class="fas fa-map-marker-alt  mr-3"></i><a :href="temherf" target="_blank">  {{temAttraction.Add}} </a></p>
+              <p class=" small mr-5"><i class="fas fa-mobile-alt mr-3"></i>{{temAttraction.Tel}}</p>              
               <footer class="blockquote-footer text-right">{{ temAttraction.Name}}</footer>
             </blockquote>
            
