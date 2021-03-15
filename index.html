@@ -42,6 +42,7 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, .36);
 
     }
+    
   </style>
 
   <title>Hello, world!</title>
@@ -55,12 +56,12 @@
     <div class="container-fluid p-5 bg-main">
       <div class="row justify-content-center">
         <div class="col-12 col-sm-8 text-center text-shadow">
-          <h1 class="text-light my-5 display-1">高雄夯旅遊</h1>
+          <h1 class="text-light my-5 display-3">高雄夯旅遊</h1>
           <p class="text-light display-5 m-0">豐富的高雄旅遊特輯，匯集主題式遊覽攻略、蒐羅在地必嚐美食，無論你是初訪高雄，或想來趟深度之旅，都能在這裡找到適合旅遊方式</p>
 
           <form>
 
-            <div class="form-group col mt-5">
+            <div class="form-group col-12 mt-5">
               <select id="inputState" class="form-control" v-model="area">
                 <option disabled value="" selected>請選擇地區</option>
                 <option v-for="item in ZoneData" :value="item.Zone">{{item.Zone}}</option>
